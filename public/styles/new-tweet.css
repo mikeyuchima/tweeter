@@ -9,7 +9,7 @@
 
 .content {
     padding: 7px;
-}
+} 
 
 .content h2{
     border-width: 1px;
@@ -26,4 +26,8 @@
 
 .content span {
     float: right;
+}
+
+.counter.error { 
+    color: red; 
 }

@@ -8,6 +8,7 @@
     padding-right: 2em;
     padding-top: 0em;
     padding-bottom: 0em;
+    z-index: 1000;
 }
 
 #nav-bar .logo {
@@ -20,3 +21,5 @@
     font-size: 200%;
     line-height: 80px;
 }
+
+.counter.error { color: red; }
