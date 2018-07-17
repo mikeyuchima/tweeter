@@ -1,0 +1,56 @@
+.tweet {
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    border-color: rgb(141, 139, 139);
+    background-color: white;
+    margin: 2em;
+    opacity: 0.80;
+}
+
+article:hover {
+    opacity: 1;
+}
+
+.tweet header {
+    background-color: rgb(223, 223, 223);
+    margin: 0;
+    padding: 5px 10px 0px 10px;
+    display: flex;
+}
+
+.fa fa-reddit-square {
+    margin: 0;
+    padding: 5px;
+}
+
+.tweet h4{
+    margin: 0;
+    padding: 5px;
+    text-align: center;
+    display: inline-block;
+}
+
+.tweet h6 {
+    float: right;
+    margin: 7px 0 0 0;
+}
+
+.tweet main p {
+    margin: 27px auto 27px 7px;
+}
+
+.pictureUsername {
+    display: flex;
+}
+
+.topheader {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.tweet footer p{
+    border-top-style: solid;
+    border-top-width: thin;
+}
