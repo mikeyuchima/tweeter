@@ -23,9 +23,10 @@ body {
 
 .container {
   margin: 0 auto;
-  padding-top: 2em;
+  padding-top: 5em;
+  padding-bottom: 2em;
   width: 450px;
-  height: 600px;
+  height: auto;
   background: white;
 }
 
