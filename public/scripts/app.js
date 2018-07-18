@@ -60,7 +60,7 @@ function createTweetElement(data) {
     let tweet = data.content.text;
     let time = data.created_at;
     let time_now = Date.now();
-    // let time_lapsed = calculateTime(time, time_now);
+    let time_lapsed = calculateTime(time, time_now);
 
     $('#tweets-container').append(`
         <article class='tweet'>
@@ -77,24 +77,33 @@ function createTweetElement(data) {
           <p class="tweet">${tweet}</p>
         </main>
         <footer>
-          <p class='time'>${calculateTime(time, time_now)}</p>
+          <p class='time'>${time_lapsed}</p>
         </footer>
       </article>
     `)
 }
 
-function calculateTime(then, now) {
-    console.log(then)
-    console.log(now)
-    console.log(Math.floor((now - then) / (1000 * 60 * 60 * 24)));
-    return (Math.floor((now - then) / (1000 * 60 * 60 * 24)));
+function renderTweets(tweets) {
+    tweets.forEach(element => {
+        createTweetElement(element);
+    });
 }
 
-  function renderTweets(tweets) {
-      tweets.forEach(element => {
-          console.log(element);
-          createTweetElement(element);
-      });
-  }
+  function calculateTime(then, now) {
+    return (Math.floor((now - then) / (1000 * 60 * 60 * 24)));
+}
   renderTweets(data)
 });
+
+$(function loadTweets() {
+    $('form').on('submit', function () {
+    event.preventDefault()
+    var query = $( "form" ).serialize();
+    console.log( $( this ).serialize() );
+      console.log('Button clicked, performing ajax call...');
+      $.ajax('/tweets', { data: query,  method: 'POST' })
+      .then(function () {
+        console.log('Success: ', query);
+      });
+    });
+  });
