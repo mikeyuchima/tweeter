@@ -16,46 +16,52 @@ function createTweetElement(data) {
 
     $('#tweets-container').prepend(`
         <article class='tweet'>
-        <header>
-          <div class='topheader'>
-            <div class='pictureUsername'>
-              <img class='icon' src=${icon}></img>
-              <span class="username">${username}</span>
-            </div>
-            <h6 class='handle'>${handle}</h6>
-          </div>
-        </header>
+            <header>
+                <div class='topheader'>
+                    <div class='pictureUsername'>
+                        <img class='icon' src=${icon}></img>
+                        <span class="username">${username}</span>
+                    </div>
+                <h6 class='handle'>${handle}</h6>
+                </div>
+            </header>
         <main>
-          <p class="tweet">${tweet}</p>
+            <p class="tweet">${tweet}</p>
         </main>
-        <footer>
-          <p class='time'>${time_lapsed}</p>
-        </footer>
-      </article>
+            <footer>
+                <p class='time'>${time_lapsed}</p>
+            </footer>
+        </article>
     `)
 }
 
-  function calculateTime(then, now) {
-    return (Math.floor((now - then) / (1000 * 60 * 60 * 24)));
-}
+    function calculateTime(then, now) {
+        return (Math.floor((now - then) / (1000 * 60 * 60 * 24)));
+    }
 
-function renderTweets(tweets) {
-    tweets.forEach(element => {
+    function renderTweets(tweets) {
+        tweets.forEach(element => {
         createTweetElement(element);
-    });
-}
+        });
+    }
 
-$(function loadTweets() {
-    event.preventDefault()
-    let arr = $.getJSON('/tweets');
-    $( window ).load(function () {
-      $.ajax('/tweets', { method: 'GET' })
-      .then(function () {
-          console.log(arr.responseJSON);
-        renderTweets(arr.responseJSON);
-      });
+    $(function loadTweets() {
+        event.preventDefault()
+        let arr = $.getJSON('/tweets');
+        $( window ).load(function () {
+        $.ajax('/tweets', { method: 'GET' })
+        .then(function () {
+            console.log(arr.responseJSON);
+            renderTweets(arr.responseJSON);
+        });
+        });
     });
-  });
+
+    $( "button" ).click(function() {
+        $( ".new-tweet" ).slideToggle( "slow", function () {
+            $('textarea').focus();
+        })
+    });
 
 
   $(function postTweets() {
@@ -68,13 +74,11 @@ $(function loadTweets() {
         return alert('Invalid Input');
     }
       console.log('Button clicked, performing ajax call...');
-      $.ajax('/tweets', { data: query,  method: 'POST' })
-
+      $.ajax('/tweets', { method: 'POST' })
       .then(function (data, status) {
-          console.log(status);
+        console.log(status);
         console.log('Success: ', data);
         createTweetElement(data);
-        return data;
       }) 
       .fail(function (data, status) {
         console.log(status);
