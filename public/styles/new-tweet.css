@@ -32,6 +32,7 @@
     color: red; 
 }
 .invalid {
+    font-family: 'Roboto Condensed', sans-serif;
     margin-right: 4em;
     color: red;
 }

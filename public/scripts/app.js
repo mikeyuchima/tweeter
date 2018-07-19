@@ -71,7 +71,7 @@ function createTweetElement(data) {
     event.preventDefault()
     var query = $( "form" ).serialize();
     console.log( $( this ).serialize() );
-    if ((query.length - 5) > 140 || query.length === 0) {
+    if ((query.length - 5) > 140 || (query.length - 5) === 0) {
         return $('.invalid').show();
     }
       console.log('Button clicked, performing ajax call...');
