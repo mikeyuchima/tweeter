@@ -31,3 +31,7 @@
 .counter.error { 
     color: red; 
 }
+.invalid {
+    margin-right: 4em;
+    color: red;
+}

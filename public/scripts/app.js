@@ -47,12 +47,14 @@ function createTweetElement(data) {
 
     $(function loadTweets() {
         event.preventDefault()
+        $('.invalid').hide();
         let arr = $.getJSON('/tweets');
         $( window ).load(function () {
         $.ajax('/tweets', { method: 'GET' })
         .then(function () {
             console.log(arr.responseJSON);
             renderTweets(arr.responseJSON);
+            $('invalid').hide();
         });
         });
     });
@@ -69,21 +71,16 @@ function createTweetElement(data) {
     event.preventDefault()
     var query = $( "form" ).serialize();
     console.log( $( this ).serialize() );
-    if (query.length > 145) {
-        console.log(query.length)
-        return alert('Invalid Input');
+    if ((query.length - 5) > 140 || query.length === 0) {
+        return $('.invalid').show();
     }
       console.log('Button clicked, performing ajax call...');
-      $.ajax('/tweets', { method: 'POST' })
+      $.ajax('/tweets', { method: 'POST', data: query})
       .then(function (data, status) {
-        console.log(status);
         console.log('Success: ', data);
         createTweetElement(data);
-      }) 
-      .fail(function (data, status) {
-        console.log(status);
-        alert('Invalid Input')
-      });
+        $('.invalid').hide();
+      })
     });
   });
 });
