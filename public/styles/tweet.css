@@ -37,6 +37,7 @@ article:hover {
 }
 
 .tweet main p {
+    overflow: auto;
     margin: 27px auto 27px 7px;
     border-color: white;
 }
