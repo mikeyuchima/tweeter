@@ -21,20 +21,20 @@ function createTweetElement(data) {
                 <div class='topheader'>
                     <div class='pictureUsername'>
                         <img class='icon' src=${icon}></img>
-                        <span class="username">${username}</span>
+                        <span class='username'>${username}</span>
                     </div>
                 <h6 class='handle'>${handle}</h6>
                 </div>
             </header>
         <main>
-            <p class="tweet">${tweet}</p>
+            <p class='tweet'>${tweet}</p>
         </main>
             <footer>
-                <span class="time">${time_lapsed} days ago</span>
-                    <span><div class="feedback">
-                        <span><i class="fas fa-flag"></i></span>
-                        <span><i class="fas fa-retweet"></i></span>
-                        <span><i class="fas fa-heart"></i></span>
+                <span class='time'>${time_lapsed} days ago</span>
+                    <span><div class='feedback'>
+                        <span><i class='fas fa-flag'></i></span>
+                        <span><i class='fas fa-retweet'></i></span>
+                        <span><i class='fas fa-heart'></i></span>
                     </div></span>
             </footer>
         </article>
@@ -58,31 +58,27 @@ function createTweetElement(data) {
         $( window ).load(function () {
         $.ajax('/tweets', { method: 'GET' })
         .then(function () {
-            console.log(arr.responseJSON);
             renderTweets(arr.responseJSON);
             $('invalid').hide();
         });
         });
     });
 //slide toggle functionality for hiding and displaying new-tweet form
-    $( "button" ).click(function() {
-        $( ".new-tweet" ).slideToggle( "slow", function () {
+    $( 'button' ).click(function() {
+        $( '.new-tweet' ).slideToggle( 'slow', function () {
             $('textarea').focus();
         })
     });
 //inserting tweet to database
   $(function postTweets() {
     $('form').on('submit', function () {
-    event.preventDefault()
-    var query = $( "form" ).serialize();
-    console.log( $( this ).serialize() );
+    event.preventDefault();
+    var query = $( 'form' ).serialize();
     if ((query.length - 5) > 140 || (query.length - 5) === 0) {
         return $('.invalid').show();
     }
-      console.log('Button clicked, performing ajax call...');
       $.ajax('/tweets', { method: 'POST', data: query})
       .then(function (data, status) {
-        console.log('Success: ', data);
         createTweetElement(data);
         $('textarea').val('');
         $('.invalid').hide();
