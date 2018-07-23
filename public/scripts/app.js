@@ -29,7 +29,12 @@ function createTweetElement(data) {
             <p class="tweet">${tweet}</p>
         </main>
             <footer>
-                <p class='time'>${time_lapsed}</p>
+                <span class="time">${time_lapsed} days ago</span>
+                    <span><div class="feedback">
+                        <span><i class="fas fa-flag"></i></span>
+                        <span><i class="fas fa-retweet"></i></span>
+                        <span><i class="fas fa-heart"></i></span>
+                    </div></span>
             </footer>
         </article>
     `)
@@ -65,7 +70,6 @@ function createTweetElement(data) {
         })
     });
 
-
   $(function postTweets() {
     $('form').on('submit', function () {
     event.preventDefault()
@@ -79,6 +83,7 @@ function createTweetElement(data) {
       .then(function (data, status) {
         console.log('Success: ', data);
         createTweetElement(data);
+        $('textarea').val('');
         $('.invalid').hide();
       })
     });

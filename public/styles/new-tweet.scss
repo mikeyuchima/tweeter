@@ -1,0 +1,44 @@
+.container {
+    .new-tweet {
+        border-style: solid;
+        border-width: 1px;
+        border-radius: 5px;
+        box-shadow: 2px 2px;
+        background-color: #FE938C;
+        margin: 2em;
+        opacity: 0.9;
+        
+        header {
+            font-family: 'Roboto Condensed', sans-serif;
+            font-size: large;
+            background-color: white;
+            text-align: center;
+            border-bottom: black;
+            border-bottom-style: solid;
+            border-bottom-width: 1px;
+        }
+    }
+}
+
+.post-tweet {
+    textarea {
+        width: 373px;
+        height: 3rem;
+        margin: 2px;
+        border-color: #B96B66;
+    }
+    footer {
+        display: flow-root;
+        text-align: right;
+        margin: 0 1rem 5px;
+
+        .counter.error { 
+            color: red; 
+        }
+        .invalid {
+            font-family: 'Roboto Condensed', sans-serif;
+            margin-right: 1em;
+            color: red;
+        }
+    }
+}
