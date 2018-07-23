@@ -14,6 +14,7 @@ function createTweetElement(data) {
     let time_now = Date.now();
     let time_lapsed = calculateTime(time, time_now);
 
+//displays tweet
     $('#tweets-container').prepend(`
         <article class='tweet'>
             <header>
@@ -39,17 +40,17 @@ function createTweetElement(data) {
         </article>
     `)
 }
-
+//convert system time to days
     function calculateTime(then, now) {
         return (Math.floor((now - then) / (1000 * 60 * 60 * 24)));
     }
-
+//loop through each object property to display each on to tweeter
     function renderTweets(tweets) {
         tweets.forEach(element => {
         createTweetElement(element);
         });
     }
-
+//retrieving tweets from database
     $(function loadTweets() {
         event.preventDefault()
         $('.invalid').hide();
@@ -63,13 +64,13 @@ function createTweetElement(data) {
         });
         });
     });
-
+//slide toggle functionality for hiding and displaying new-tweet form
     $( "button" ).click(function() {
         $( ".new-tweet" ).slideToggle( "slow", function () {
             $('textarea').focus();
         })
     });
-
+//inserting tweet to database
   $(function postTweets() {
     $('form').on('submit', function () {
     event.preventDefault()
